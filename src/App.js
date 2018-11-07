@@ -1,4 +1,5 @@
 // react-bot/src/App.js
+import './App.css'
 
 import React, { Component } from 'react';
 import Route from 'react-router-dom/Route'
