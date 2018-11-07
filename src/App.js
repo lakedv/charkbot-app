@@ -1,10 +1,10 @@
 // react-bot/src/App.js
 
 import React, { Component } from 'react';
-
-
-//import NavUI from './comps/Navbar'
-import Chatbot from './comps/Chatbot';
+import Route from 'react-router-dom/Route'
+import Chatbot from './comps/Chatbot'
+import { BrowserRouter } from 'react-router-dom'
+import NavUI from './comps/NavUI';
 
   class App extends Component {
   
@@ -12,8 +12,14 @@ import Chatbot from './comps/Chatbot';
     render() {
      
       return (
-      
-        <Chatbot></Chatbot>
+      <div>
+        <BrowserRouter>
+          <div>
+            <NavUI />
+            <Route path="/chatbot" component={Chatbot} />
+          </div>
+        </BrowserRouter>
+      </div>
       
       );
     }
