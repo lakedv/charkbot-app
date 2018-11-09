@@ -10,6 +10,8 @@ users.use(cors());
 
 process.env.SECRET_KEY = "users";
 
+/* Register handler */
+
 users.post('/register', function (req, res) {
   console.log('register');
   var appData = {
