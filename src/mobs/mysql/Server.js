@@ -4,6 +4,7 @@ var bodyParser = require("body-parser");
 var exp = express();
 var port = 3001;
 
+/* exp => finds route */
 
 exp.use(bodyParser.json());
 exp.use(cors());
@@ -12,7 +13,7 @@ exp.use(bodyParser.urlencoded({
  extended: false
 }));
 
-var Users = require('./Usuarios');
+var Users = require('../Usuarios');
 
 exp.use('/usuarios', Users);
 

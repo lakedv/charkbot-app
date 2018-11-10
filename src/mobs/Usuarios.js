@@ -1,10 +1,8 @@
 
 var express = require('express');
 var users = express.Router();
-var database = require('./mysql/database');
+var database = require('./mysql/Datab');
 var cors = require('cors')
-var jwt = require('jsonwebtoken');
-// var token;
 
 users.use(cors());
 
