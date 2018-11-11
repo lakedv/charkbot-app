@@ -8,6 +8,10 @@ users.use(cors());
 
 process.env.SECRET_KEY = "users";
 
+users.get('/', function(req, res){
+  res.send('TEST');
+})
+
 /* Register handler */
 
 users.post('/register', function (req, res) {
@@ -17,9 +21,10 @@ users.post('/register', function (req, res) {
     "data": ""
   };
   var userData = {
-    "Email": req.body.email,
-    "Usuario": req.body.usuario,
-    "Password": req.body.password,
+    "email": req.body.email,
+    "name": req.body.name,
+    "password": req.body.password,
+    "username": req.body.username
   }
 
   database.connection.getConnection(function (err, connection) {
@@ -61,7 +66,7 @@ users.post('/login', function (req, res) {
       appData["err"] = err.message;
       res.status(500).json(appData);
     } else {
-      connection.query('SELECT * FROM usuarios WHERE Usuario = ?', [email], function (err, rows, fields) {
+      connection.query('SELECT * FROM usuarios WHERE email = ?', [email], function (err, rows, fields) {
         if (err) {
           appData.error = 1;
           appData["data"] = "Error Occured!";
@@ -71,11 +76,7 @@ users.post('/login', function (req, res) {
           if (rows.length > 0) {
             if (rows[0].password == password) {
               console.log(process.env.SECRET_KEY)
-              // token = jwt.sign(rows[0], process.env.SECRET_KEY, {
-              //   expiresIn: 5000
-              // });
               appData.error = 0;
-              // appData["token"] = token;
               res.status(200).json(appData);
             } else {
               appData.error = 1;
