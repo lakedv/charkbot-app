@@ -10,13 +10,13 @@ exp.use(bodyParser.json());
 exp.use(cors());
 
 exp.use(bodyParser.urlencoded({
- extended: false
+    extended: false
 }));
 
 var Users = require('../Usuarios');
 
 exp.use('/usuarios', Users);
 
-exp.listen(port,function(){
- console.log("Server is running on port: "+port);
+exp.listen(port, function () {
+    console.log("Server is running on port: " + port);
 });

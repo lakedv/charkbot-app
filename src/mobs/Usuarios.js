@@ -8,7 +8,7 @@ users.use(cors());
 
 process.env.SECRET_KEY = "users";
 
-users.get('/', function(req, res){
+users.get('/', function (req, res) {
   res.send('TEST');
 })
 
@@ -32,7 +32,7 @@ users.post('/register', function (req, res) {
     if (err) {
       appData["error"] = 1;
       appData["data"] = "Internal Server Error";
-      res.status(500).json(appData);
+      res.json(appData);
     } else {
       connection.query('INSERT INTO usuarios SET ?', userData, function (err, rows, fields) {
         if (!err) {
@@ -41,7 +41,7 @@ users.post('/register', function (req, res) {
           res.status(201).json(appData);
         } else {
           appData["data"] = "Error Occured!";
-          res.status(400).json(appData);
+          res.json(appData);
         }
       });
       connection.release();
@@ -64,13 +64,13 @@ users.post('/login', function (req, res) {
       appData["error"] = 1;
       appData["data"] = "Internal Server Error";
       appData["err"] = err.message;
-      res.status(500).json(appData);
+      res.json(appData);
     } else {
       connection.query('SELECT * FROM usuarios WHERE email = ?', [email], function (err, rows, fields) {
         if (err) {
           appData.error = 1;
           appData["data"] = "Error Occured!";
-          res.status(400).json(appData);
+          res.json(appData);
         } else {
           console.log(rows.length)
           console.log(rows[0])
@@ -79,16 +79,16 @@ users.post('/login', function (req, res) {
               console.log(process.env.SECRET_KEY)
               appData.error = 0;
               appData.user = rows[0];
-              res.status(200).json(appData);
+              res.json(appData);
             } else {
               appData.error = 1;
               appData["data"] = "Email and Password does not match";
-              res.status(200).json(appData);
+              res.json(appData);
             }
           } else {
             appData.error = 1;
             appData["data"] = "Email does not exists!";
-            res.status(200).json(appData);
+            res.json(appData);
           }
         }
       });
@@ -105,16 +105,16 @@ users.get('/getUsers', function (req, res) {
     if (err) {
       appData["error"] = 1;
       appData["data"] = "Internal Server Error";
-      res.status(500).json(appData);
+      res.json(appData);
     } else {
       connection.query('SELECT * FROM usuarios', function (err, rows, fields) {
         if (!err) {
           appData["error"] = 0;
           appData["data"] = rows;
-          res.status(200).json(appData);
+          res.json(appData);
         } else {
           appData["data"] = "No data found";
-          res.status(204).json(appData);
+          res.json(appData);
         }
       });
       connection.release();

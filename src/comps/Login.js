@@ -29,7 +29,7 @@ class Login extends Component {
         login(user).then(res => {
             if (!res.data.error) {
                 this.props.history.push(`/`)
-            }else {
+            } else {
                 alert(res.data.data)
             }
         })
