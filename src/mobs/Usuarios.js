@@ -73,20 +73,22 @@ users.post('/login', function (req, res) {
           res.status(400).json(appData);
         } else {
           console.log(rows.length)
+          console.log(rows[0])
           if (rows.length > 0) {
             if (rows[0].password == password) {
               console.log(process.env.SECRET_KEY)
               appData.error = 0;
+              appData.user = rows[0];
               res.status(200).json(appData);
             } else {
               appData.error = 1;
               appData["data"] = "Email and Password does not match";
-              res.status(204).json(appData);
+              res.status(200).json(appData);
             }
           } else {
             appData.error = 1;
             appData["data"] = "Email does not exists!";
-            res.status(204).json(appData);
+            res.status(200).json(appData);
           }
         }
       });
