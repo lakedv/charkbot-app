@@ -41,6 +41,14 @@ class NavUI extends React.Component {
             </ul>
         )
 
+        const contactLink = (
+            
+                <ul className="nav navbar-nav navbar-right">
+                    <li className={this.getNavLinkClass("/chatbot")}><NavLink to="/Chatbot">Contacto</NavLink></li>
+                </ul>
+            
+        )
+
         return (
 
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark rounded">
@@ -70,9 +78,7 @@ class NavUI extends React.Component {
                     {localStorage.usertoken ? userLink : loginReqLink}
                 </div>
                 <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul className="nav navbar-nav navbar-right">
-                        <li className={this.getNavLinkClass("/chatbot")}><NavLink to="/Chatbot">Contacto</NavLink></li>
-                    </ul>
+                {localStorage.usertoken ? contactLink : "" }
                 </div>
             </nav>
 
