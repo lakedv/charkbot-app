@@ -42,7 +42,7 @@ Como funciona:
               El usuario debe registrarse principalmente con el boton "Register".
               Una vez registrado puede acceder a las funcionalidades de la aplicación.
               En la pestaña "Add Product" el usuario puede agregar productos.
-              En la pestaña "Contacto" puede acceder a nuestro bot.
+              En la pestaña "Contacto" puede acceder a nuestro bot, el cual ayudara al usuario con lo que necesite.
 
 
 
