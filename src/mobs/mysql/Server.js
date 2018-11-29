@@ -15,7 +15,14 @@ exp.use(bodyParser.urlencoded({
 
 var Users = require('../Usuarios');
 
-exp.use('/usuarios', Users);
+var Prods = require('../Productos')
+
+exp.use(
+    '/usuarios', Users
+);
+exp.use(
+    '/productos', Prods
+);
 
 exp.listen(port, function () {
     console.log("Server is running on port: " + port);

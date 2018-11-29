@@ -1,4 +1,3 @@
-
 var express = require('express');
 var users = express.Router();
 var database = require('./mysql/Datab');
@@ -38,7 +37,7 @@ users.post('/register', function (req, res) {
         if (!err) {
           appData.error = 0;
           appData["data"] = "User registered successfully!";
-          res.status(201).json(appData);
+          res.json(appData);
         } else {
           appData["data"] = "Error Occured!";
           res.json(appData);

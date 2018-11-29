@@ -19,6 +19,25 @@ export const register = newUser => {
         })
 }
 
+export const addprodc = newProds => {
+    var user = JSON.parse(localStorage.getItem('usertoken'))
+    console.log(user.ID)
+    return axios
+        .post('http://localhost:3001/productos/create', {
+            name: newProds.name,
+            value: newProds.value,
+            description: newProds.desc,
+            IDuser: user.ID
+        })
+        .then(response => {  
+            alert('Producto agregado Correctamente!')
+            console.log('Registered')
+        })
+        .catch(err => {
+            console.log(err)
+        })
+}
+
 export const login = user => {
     return axios
         .post('http://localhost:3001/usuarios/login', {
@@ -27,7 +46,8 @@ export const login = user => {
         })
         //.then(response => response.json())
         .then(json => {
-            localStorage.setItem('usertoken', JSON.stringify(json.user))
+            console.log(json.data.user)
+            localStorage.setItem('usertoken', JSON.stringify(json.data.user))
             return json
         })
         .catch(err => {

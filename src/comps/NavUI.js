@@ -41,12 +41,24 @@ class NavUI extends React.Component {
             </ul>
         )
 
+        const prodcLink = (
+
+            <ul className="navbar-nav">
+                <li className="nav-item">
+                    <Link to="/addprodc" className="nav-link" >
+                        Add Product
+                    </Link>
+                </li>
+            </ul>
+
+        )
+
         const contactLink = (
-            
-                <ul className="nav navbar-nav navbar-right">
-                    <li className={this.getNavLinkClass("/chatbot")}><NavLink to="/Chatbot">Contacto</NavLink></li>
-                </ul>
-            
+
+            <ul className="nav navbar-nav navbar-right">
+                <li className={this.getNavLinkClass("/chatbot")}><NavLink to="/Chatbot">Contacto</NavLink></li>
+            </ul>
+
         )
 
         return (
@@ -76,9 +88,10 @@ class NavUI extends React.Component {
                         </li>
                     </ul>
                     {localStorage.usertoken ? userLink : loginReqLink}
+                    {localStorage.usertoken ? prodcLink : "" }
                 </div>
                 <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                {localStorage.usertoken ? contactLink : "" }
+                    {localStorage.usertoken ? contactLink : "" }
                 </div>
             </nav>
 
